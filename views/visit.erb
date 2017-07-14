@@ -1,0 +1,59 @@
+<h2>Записаться</h2>
+<form action='/visit' method="POST" class="form-horizontal">
+  <div class="form-group">
+    <label id="bbb" for="inputEmail3" class="col-sm-2 control-label">Ваше имя:</label>
+    <div class="col-sm-10">
+      <input name="user_name" type="text" class="form-control"  placeholder="Введите ваше имя..." value="<%= @user_name %>">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Дата</label>
+    <div class="col-sm-10">
+      <input name="date" type="text" class="form-control" placeholder="Введите дату..." value="<%= @date %>">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label ccc">Номер телефона</label>
+    <div class="col-sm-10">
+      <input name="phone_number" type="text" class="form-control" placeholder="Номер телефона..." value="<%= @phone %>">
+    </div>
+  </div>
+  <div class="select">
+    <select name="parik">
+      <option selected="selected">Выбирете парикмахера..</option>
+      <option value="Whalter White">Whalter White</option>
+      <option value="Jessy Pinkman">Jessy Pinkman</option>
+      <option value="Gus Fing">Gus Fing</option>
+    </select>
+  </div>   
+  <div class="form-group"> 
+    <label class="col-sm-2 control-label">Цвет краски</label>
+    <div class="col-sm-10">
+    <select name="colorpicker">
+    <option value="#7bd148">Green</option>
+    <option value="#5484ed">Bold blue</option>
+    <option value="#a4bdfc">Blue</option>
+    <option value="#46d6db">Turquoise</option>
+    <option value="#7ae7bf">Light green</option>
+    <option value="#51b749">Bold green</option>
+    <option value="#fbd75b">Yellow</option>
+    <option value="#ffb878">Orange</option>
+    <option value="#ff887c">Red</option>
+    <option value="#dc2127">Bold red</option>
+    <option value="#dbadff">Purple</option>
+    <option value="#e1e1e1">Gray</option>
+    </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Записаться</button>
+    </div>
+  </div>
+</form>
+
+<script type="text/javascript">
+$(function() {
+  $('select[name="colorpicker"]').simplecolorpicker();
+});
+</script>

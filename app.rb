@@ -1,7 +1,20 @@
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
-require 'pony'
+require 'sqlite3'
+
+configure do
+  @db = SQLite3::Database.new 'barbershop.db'
+  @db.execute CREATE TABLE `User` (
+	'Id'	INTEGER PRIMARY KEY AUTOINCREMENT,
+	'Name'	TEXT,
+	'Phone'	TEXT,
+	'DateStamp'	TEXT,
+	'Barber'	TEXT,
+	'Color'	TEXT
+)
+end
+
 
 get '/' do
   erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has lite version"
@@ -63,21 +76,11 @@ post '/contacts' do
       @error == hh[key]
       return erb :contacts
     end
+  end
 
   @contacts = File.open "./public/contacts.txt", 'a'
   @contacts.write "Email: #{@email}, Сообщение: #{@message}.     "
   @contacts.close
 
   erb :contacts
-end
-
-post '/login' do
-  @login = params[:login]
-  @pass = params[:password]
-
-  if @login == "admin" && @pass == "secret"
-    './public/user.txt'
-  else
-    erb :login
-  end
 end

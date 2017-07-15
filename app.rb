@@ -4,15 +4,7 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 configure do
-  @db = SQLite3::Database.new 'barbershop.db'
-  @db.execute CREATE TABLE `User` (
-	'Id'	INTEGER PRIMARY KEY AUTOINCREMENT,
-	'Name'	TEXT,
-	'Phone'	TEXT,
-	'DateStamp'	TEXT,
-	'Barber'	TEXT,
-	'Color'	TEXT
-)
+  db = get_db
 end
 
 
@@ -42,6 +34,7 @@ post '/visit' do
   @date = params[:date]
   @phone = params[:phone_number]
   @parik = params[:parik]
+  @color = params[:color]
 
   hh = {:user_name => 'Введите имя',
         :phone => 'Введите телефон',
@@ -54,11 +47,9 @@ post '/visit' do
     end
   end
 
-
-
-  @file = File.open "./public/user.txt", "a"
-  @file.write "Имя: #{@user_name}, Дата: #{@date}, Номер телефона: #{@phone}. Парикмахер: #{@parik}   "
-  @file.close
+  db = get_db
+  db.execute 'insert into Users (username, phone, DateStamp, barber, color) 
+       values (?,?,?,?,?)', [@user_name, @phone, @date, @parik, @color]
 
   erb :visit
 end
@@ -83,4 +74,8 @@ post '/contacts' do
   @contacts.close
 
   erb :contacts
+end
+
+def get_db
+ return SQLite3::Database.new 'barbershop.db'
 end

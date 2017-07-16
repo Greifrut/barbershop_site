@@ -23,6 +23,11 @@ def get_db
  return db
 end
 
+before do
+  db = get_db
+  @barbers = db.execute 'select * from Barbers'
+end
+
 configure do
   db = get_db
   db.execute 'create table if not exists
@@ -83,7 +88,7 @@ post '/visit' do
   db = get_db
   db.execute 'insert into Users (username, phone, DateStamp, barber, color) 
        values (?,?,?,?,?)', [@user_name, @phone, @date, @parik, @color]
-
+  
   erb :visit
 end
 

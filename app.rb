@@ -28,6 +28,9 @@ get '/login' do
   erb :login
 end
 
+get '/showuser' do
+  erb :showuser
+end
 
 post '/visit' do
   @user_name = params[:user_name]
@@ -78,4 +81,9 @@ end
 
 def get_db
  return SQLite3::Database.new 'barbershop.db'
+end
+
+post '/showuser' do
+  db = get_db
+  db.execute 'select * from Users order by id desc'
 end

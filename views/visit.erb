@@ -1,4 +1,10 @@
 <h2>Записаться</h2>
+<script type="text/javascript">
+$(function() {
+  $('select[name="colorpicker"]').simplecolorpicker();
+  $('#datetimepicker').datetimepicker();
+});
+</script>
 <form action='/visit' method="POST" class="form-horizontal">
   <div class="form-group">
     <label id="bbb" for="inputEmail3" class="col-sm-2 control-label">Ваше имя:</label>
@@ -7,9 +13,9 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Дата</label>
+    <label for="inputPassword3" class="col-sm-2 control-label">Когда вас ждать: </label>
     <div class="col-sm-10">
-      <input name="date" type="text" class="form-control" placeholder="Введите дату..." value="<%= @date %>">
+      <input id="datetimepicker" name="date" type="text" class="form-control" placeholder="Введите дату..." value="<%= @date %>">
     </div>
   </div>
   <div class="form-group">
@@ -29,7 +35,7 @@
   <div class="form-group"> 
     <label class="col-sm-2 control-label">Цвет краски</label>
     <div class="col-sm-10">
-    <select name="color">
+    <select name="colorpicker">
     <option value="#7bd148">Green</option>
     <option value="#5484ed">Bold blue</option>
     <option value="#a4bdfc">Blue</option>
@@ -52,8 +58,4 @@
   </div>
 </form>
 
-<script type="text/javascript">
-$(function() {
-  $('select[name="colorpicker"]').simplecolorpicker();
-});
-</script>
+

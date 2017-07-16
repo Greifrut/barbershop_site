@@ -1,1 +1,24 @@
 <h2>Список клиенов:</h2>
+
+<table class="table">
+    <thead>
+         <tr>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Дата записи</th>
+        <th>Парикмахер</th>
+        <th>Цвет</th>
+       </tr> 
+    </thead>
+    <body>
+    <% @results.each do |row|%>
+       <tr>
+        <td><%= row['username'] %></td>
+        <td><%= row['phone']%></td>
+        <td><%= row['DateStamp']%></td>
+        <td><%= row['barber']%></td>
+        <td><%= row['color']%></td>
+       </tr> 
+    <% end %>
+    </body>
+</table>

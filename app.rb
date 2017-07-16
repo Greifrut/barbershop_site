@@ -35,6 +35,9 @@ get '/login' do
 end
 
 get '/showuser' do
+  db = get_db
+  @results = db.execute 'select * from Users order by id desc'
+
   erb :showuser
 end
 
@@ -84,8 +87,3 @@ post '/contacts' do
 
   erb :contacts
 end
-
-post '/showuser' do
-  db = get_db
-  db.execute 'select * from Users order by id desc'
-end  

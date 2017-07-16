@@ -72,7 +72,7 @@ post '/visit' do
   @date = params[:date]
   @phone = params[:phone_number]
   @parik = params[:parik]
-  @color = params[:color]
+  @color = params[:colorpicker]
 
   hh = {:user_name => 'Введите имя',
         :phone => 'Введите телефон',
